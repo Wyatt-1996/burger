@@ -1,0 +1,16 @@
+<h1>Eat Da Burger</h1>
+
+{{#each burgers}}
+    {{#if devoured}}
+        <p>{{burger_name}}</p>
+    {{/if}}
+{{/each}}
+
+<h1>Devoured</h1>
+
+{{#each burgers}}
+    {{#if devoured}}
+    {{else}}
+        <p>{{burger_name}}</p>
+    {{/if}}
+{{/each}}
