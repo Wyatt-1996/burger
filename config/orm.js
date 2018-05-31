@@ -10,20 +10,25 @@ router.get("/all", function(req, res) {
 });
 
 // adds one burger to table
-router.post("/add", function(req, res) {
-    var name = req.body.burger_name;
-    connection.query("INSERT INTO burger (burger_name) VALUES (?)", name, 
+router.post("/add/:name", function(req, res) {
+    var name = req.params.name;
+    console.log(name);
+    
+    connection.query("INSERT INTO burger (burger_name, devoured) VALUES (?, ?)", [name, false], 
     function(err, results) {
-        res.send(name);
+        res.send(results);
     });
 });
 
 // change devoured to true
 router.put("/eat/:id", function(req, res) {
     var id = req.params.id;
-    connection.query("UPDATE burger SET devoured = 1 WHERE ?", [{id: id}], 
+    console.log(id);
+    connection.query("UPDATE burger SET devoured = true WHERE ?", {id: id}, 
     function(err, results) {
-        res.send(id);
+        //console.log(results);
+        
+        res.send(results);
     });
 });
 

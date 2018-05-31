@@ -11,9 +11,13 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.engine("handlebars", exphbs({defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 
+app.use(express.static("public"))
+
 app.get("/", function(req, res) {
     connection.query("SELECT * FROM burger", function(err, results) {
-        res.render("index", {burgers: results});
+        console.log(results);
+        
+        res.render("index", {burger: results});
     });
 });
 
