@@ -73,7 +73,8 @@
 
     <div>
         {{#each burger}} {{#if devoured}} {{else}}
-        <p><span class="new-burgers">{{burger_name}}</span>
+        <p>
+            <span class="new-burgers">{{burger_name}}</span>
             <button class="devour" info={{id}}>Devour It!</button>
         </p>
         {{/if}} {{/each}}
@@ -81,7 +82,10 @@
 
     <div>
         {{#each burger}} {{#if devoured}}
-        <p class="eaten-burgers">{{burger_name}}</p>
+        <p class="eaten-burgers">
+            <button class="delete" info={{id}}>X</button>
+            {{burger_name}}
+        </p>
         {{/if}} {{/each}}
     </div>
 </div>
@@ -113,6 +117,19 @@
         $.ajax({
             method: 'POST',
             url: '/add/' + name
+        }).then(function (res) {
+            console.log(res);
+            location.reload();
+        });
+
+    });
+
+    $('.delete').click(function () {
+        var id = $(this).attr('info');
+
+        $.ajax({
+            method: 'DELETE',
+            url: '/delete/' + id
         }).then(function (res) {
             console.log(res);
             location.reload();

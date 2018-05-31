@@ -32,4 +32,16 @@ router.put("/eat/:id", function(req, res) {
     });
 });
 
+// change devoured to true
+router.delete("/delete/:id", function(req, res) {
+    var id = req.params.id;
+    console.log(id);
+    connection.query("DELETE FROM burger WHERE ?", {id: id}, 
+    function(err, results) {
+        //console.log(results);
+        
+        res.send(results);
+    });
+});
+
 module.exports = router;
