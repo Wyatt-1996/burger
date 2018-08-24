@@ -6,12 +6,12 @@ var apiRoutes = require('./config/orm');
 var app = express();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.engine("handlebars", exphbs({defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 
-app.use(express.static("public"))
+app.use(express.static("public"));
 
 app.get("/", function(req, res) {
     connection.query("SELECT * FROM burger", function(err, results) {
